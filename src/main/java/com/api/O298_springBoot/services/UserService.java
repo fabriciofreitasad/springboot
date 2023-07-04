@@ -15,7 +15,7 @@ public class UserService {
 	@Autowired //spring vai fazer a injeçao de dependencia automatica
 	private UserRepository repository;
 	
-	public List<User> findAll(){
+	public List<User> findAll() {
 		return repository.findAll();
 	}
 	
