@@ -1,7 +1,7 @@
 package com.api.O298_springBoot.entities.enums;
 
 public enum OrderStatus {
-	WAITNG_PAYMENT(1),
+	WAITING_PAYMENT(1),
 	PAID(2),
 	SHIPPED(3),
 	DELIVERED(4),

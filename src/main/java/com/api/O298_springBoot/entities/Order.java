@@ -21,29 +21,28 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
-	
+
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() {
 	}
 
-	public Order(Integer id, Instant moment,OrderStatus orderStatus, User client) {
+	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
@@ -51,11 +50,11 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -67,25 +66,25 @@ public class Order implements Serializable {
 		this.moment = moment;
 	}
 
-	public User getClient() {
-		return client;
-	}
-
 	public OrderStatus getOrderStatus() {
-		return OrderStatus.valueOf(orderStatus) ;
+		return OrderStatus.valueOf(orderStatus);
 	}
 
 	public void setOrderStatus(OrderStatus orderStatus) {
-		if(orderStatus != null) {
-		this.orderStatus = orderStatus.getCode();
+		if (orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
 		}
+	}
+
+	public User getClient() {
+		return client;
 	}
 
 	public void setClient(User client) {
 		this.client = client;
 	}
-	
-	public Set<OrderItem> getItems(){
+
+	public Set<OrderItem> getItems() {
 		return items;
 	}
 
